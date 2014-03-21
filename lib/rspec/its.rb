@@ -123,10 +123,12 @@ module RSpec
         alias_method :are_expected, :is_expected
 
         def should(matcher=nil, message=nil)
+          RSpec.deprecate("Using `its(:foo) { should eq 'foo' }`", :replacement => "`its(:foo) { is_expected.to eq 'foo' }`")
           RSpec::Expectations::PositiveExpectationHandler.handle_matcher(__its_subject, matcher, message)
         end
 
         def should_not(matcher=nil, message=nil)
+          RSpec.deprecate("Using `its(:foo) { should_not eq 'foo' }`", :replacement => "`its(:foo) { is_expected.to not eq 'foo' }`")
           RSpec::Expectations::NegativeExpectationHandler.handle_matcher(__its_subject, matcher, message)
         end
 
